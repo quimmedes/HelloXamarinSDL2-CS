@@ -18,12 +18,32 @@ namespace HelloXamarinSDL_CS
     public class MainActivity : SDLActivity
     {
         public static MainActivity Instance { get ; protected set; }
-        public static bool SDL2DCS_Fullscreen = true;
+        public static bool Fullscreen = true;
         static nint window;
         static nint renderer;
 
         [DllImport("main")]
         static extern void SetMain(Main main);
+
+
+        //Return the libraries you want to load that are inside lib folder this is only for the SDL and Java comunication/
+        //you also have to make sure the C# DllImport are set up correctly since you want to use C# too.
+        protected override string[]? GetLibraries()
+        {
+
+            return new string[] { "SDL2", "SDL2_image", "main"  };
+        }
+
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            //Don't forget to call the base class
+            base.OnCreate(savedInstanceState);
+
+            Instance = this;
+            Fullscreen = true;
+            //Don't forget to set a Initialize method
+            SetMain(Init);
+        }
 
 
         public static void Init()
@@ -38,7 +58,7 @@ namespace HelloXamarinSDL_CS
             Instance.WindowManager.DefaultDisplay.GetMetrics(dm);
 
             window = SDL_CreateWindow(
-                "HEY, LISTEN!",
+                "Hello World",
                 SDL_WINDOWPOS_CENTERED,
                 SDL_WINDOWPOS_CENTERED,
                 dm.WidthPixels,
@@ -51,7 +71,7 @@ namespace HelloXamarinSDL_CS
 
              renderer = SDL_CreateRenderer(window, -1, SDL_RendererFlags.SDL_RENDERER_ACCELERATED);
 
-            nint texture = IMG_LoadTexture(renderer, Path.Combine("file:///android_asset", "player.png")); 
+           // nint texture = IMG_LoadTexture(renderer, "file:///android_asset/player.png"); 
 
            
 
@@ -72,7 +92,7 @@ namespace HelloXamarinSDL_CS
                 SDL_SetRenderDrawColor(renderer, (byte) (i % 255), 128, 0, 255);
 
 
-                blit(texture, 100, 100);
+              //  blit(texture, 100, 100);
 
                 SDL_RenderPresent(renderer);
 
@@ -87,21 +107,13 @@ namespace HelloXamarinSDL_CS
 
 
         }
-        
-        
 
-        public override void LoadLibraries()
-        {
-            base.LoadLibraries();
-            Instance = this;
-            Bootstrap.SetMain(Init);
-            // Bootstrap.SetupMain();
-        }
+
 
         public override void OnWindowFocusChanged(bool hasFocus)
         {
             base.OnWindowFocusChanged(hasFocus);
-            if (hasFocus && SDL2DCS_Fullscreen)
+            if (hasFocus && Fullscreen)
             {
                 Window.DecorView.SystemUiFlags = (SystemUiFlags)(
                     SystemUiFlags.LayoutStable |
@@ -114,14 +126,6 @@ namespace HelloXamarinSDL_CS
             }
         }
 
-        
-        
-
-        protected override string[]? GetLibraries()
-        {
-
-            return new string[] { "SDL2", "SDL2_image", "main"  };
-        }
 
         public static void blit(IntPtr texutre, float x, float y)
         {

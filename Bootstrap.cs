@@ -30,14 +30,28 @@ namespace HelloXamarinSDL_CS{
 
     static class Bootstrap {
 
+        [DllImport("main", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SetMain(Main main);
+
+
+        public static void SetupMain()
+        {
+            // Give the main library something to call in Mono-Land afterwards
+            SetMain(Main);
+            // Insert your own post-lib-load, pre-SDL2 code here.
+        }
+
         public static void Main() {
+
+
+           
             // Example code.
 
             // OPTIONAL: Hide action bar (top bar). Otherwise it just shows the window title.
             // MainActivity.Instance.RunOnUiThread(MainActivity.Instance.ActionBar.Hide);
 
             // OPTIONAL: Fullscreen (immersive), handled by the activity
-            MainActivity.SDL2DCS_Fullscreen = true;
+            MainActivity.Fullscreen = true;
 
             SDL.SDL_Init(
                 SDL.SDL_INIT_VIDEO |
@@ -105,18 +119,9 @@ namespace HelloXamarinSDL_CS{
 
         }
 
-        public static void SetupMain() {
-            // Give the main library something to call in Mono-Land afterwards
-           SetMain(Main);
-       //   SDL_Main();
-
-            // Insert your own post-lib-load, pre-SDL2 code here.
-        }
 
 
-        
-        [DllImport("main", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetMain(Main main);
+   
         
     }
 }
