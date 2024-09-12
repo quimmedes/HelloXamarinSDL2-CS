@@ -50,11 +50,12 @@ namespace HelloXamarinSDL_CS
         {
             Window.AddFlags(WindowManagerFlags.Fullscreen);
             Window.RequestFeature(WindowFeatures.NoTitle);
+            Instance = this;
+            Fullscreen = true;
             //Don't forget to call the base class
             base.OnCreate(savedInstanceState);
 
-            Instance = this;
-            Fullscreen = true;
+          
          
         }
 
