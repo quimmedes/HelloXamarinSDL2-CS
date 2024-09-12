@@ -29,7 +29,7 @@ namespace HelloXamarinSDL_CS
 
         //Return the libraries you want to load that are inside lib folder this is only for the SDL and Java comunication/
         //you also have to make sure the C# DllImport are set up correctly since you want to use C# too.
-        protected override string[]? GetLibraries()
+        protected override string[] GetLibraries()
         {
 
             return new string[] { "SDL2", "SDL2_image", "main", "SDL2_mixer", "SDL2_ttf", "SDL2_net" };
