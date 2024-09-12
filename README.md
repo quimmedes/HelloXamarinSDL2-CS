@@ -1,5 +1,5 @@
 #  Hello World SDL2 to Android Xamarin or Android MAUI WITH C# Visual Studio 2022 .NET 8.0 /  Android API 34
-# It works, Just write C# code and the call the SDL methods using SDL2-CS bindings already included.
+# It works, Just write C# code and use SDL methods using SDL2-CS bindings already included.
 
 - SDL2 version of this build is currenly 2.30.7
 - I will add a SDL3 version soon.
