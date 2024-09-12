@@ -40,13 +40,16 @@ namespace SDL2
 {
 	public static class SDL
     {
-		#region SDL2# Variables
+        #region SDL2# Variables
 
-#if ANDROID
+#if ANDROID || WINDOWS || LINUX
 
          const string nativeLibName = "SDL2";
+
 #else
-		const string nativeLibName = "__Internal";
+
+
+        const string nativeLibName = "__Internal";
 #endif
 
 		#endregion

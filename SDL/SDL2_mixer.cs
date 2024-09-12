@@ -35,20 +35,24 @@ namespace SDL2
 {
 	public static class SDL_mixer
 	{
-		#region SDL2# Variables
+        #region SDL2# Variables
+#if ANDROID || WINDOWS || LINUX
 
 		/* Used by DllImport to load the native library. */
 		private const string nativeLibName = "SDL2_mixer";
+#else
 
-		#endregion
+        private const string nativeLibName = "__Internal";
+#endif
+        #endregion
 
-		#region SDL_mixer.h
+        #region SDL_mixer.h
 
-		/* Similar to the headers, this is the version we're expecting to be
+        /* Similar to the headers, this is the version we're expecting to be
 		 * running with. You will likely want to check this somewhere in your
 		 * program!
 		 */
-		public const int SDL_MIXER_MAJOR_VERSION =	2;
+        public const int SDL_MIXER_MAJOR_VERSION =	2;
 		public const int SDL_MIXER_MINOR_VERSION =	0;
 		public const int SDL_MIXER_PATCHLEVEL =		5;
 

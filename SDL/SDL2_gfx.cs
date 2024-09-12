@@ -35,14 +35,19 @@ namespace SDL2
 {
 	public static class SDL_gfx
 	{
-		#region SDL2# Variables
+        #region SDL2# Variables
+
+#if ANDROID || WINDOWS || LINUX
 
 		/* Used by DllImport to load the native library. */
 		private const string nativeLibName = "SDL2_gfx";
 
-		#endregion
-		
-		public const double M_PI = 3.1415926535897932384626433832795;
+#else
+        private const string nativeLibName = "__Internal";
+#endif
+        #endregion
+
+        public const double M_PI = 3.1415926535897932384626433832795;
 		
 		#region SDL2_gfxPrimitives.h
 		

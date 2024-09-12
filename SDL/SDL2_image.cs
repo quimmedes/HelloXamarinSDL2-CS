@@ -36,11 +36,12 @@ namespace SDL2
 	public static class SDL_image
 	{
         #region SDL2# Variables
-#if ANDROID
+#if ANDROID || WINDOWS || LINUX
+
         /* Used by DllImport to load the native library. */
-        private const string nativeLibName = "SDL2_image.so";
+        private const string nativeLibName = "SDL2_image";
 #else
-       
+
         private const string nativeLibName = "__Internal";
 #endif
         #endregion

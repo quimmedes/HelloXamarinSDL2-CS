@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">HelloXamarinSDL_CS</string>
     <string name="app_text">Hello, Android!</string>
+	
 </resources>
