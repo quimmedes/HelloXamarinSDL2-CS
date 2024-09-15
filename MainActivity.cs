@@ -50,6 +50,10 @@ namespace HelloXamarinSDL_CS
         {
             Window.AddFlags(WindowManagerFlags.Fullscreen);
             Window.RequestFeature(WindowFeatures.NoTitle);
+
+            if(Build.VERSION.SdkInt >= BuildVersionCodes.P)
+                Window.Attributes.LayoutInDisplayCutoutMode = LayoutInDisplayCutoutMode.ShortEdges;
+
             Instance = this;
             Fullscreen = true;
             //Don't forget to call the base class
